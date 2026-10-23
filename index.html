@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BrainForge | Interactive Quizzes, Skill Tests & Flashcards</title>
+  <meta name="description" content="Sharpen your cognitive skills with BrainForge. Interactive quizzes in Science, Coding, and General Knowledge with real-time scoring, live study leaderboards, and instant flashcards.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ==============================================================================
+       HEADER NAVIGATION & USER TELEMETRY
+       ============================================================================== -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="brand-logo">
+        <div class="brand-icon">⚡</div>
+        <div class="brand-text">
+          <h1>BrainForge</h1>
+          <span class="brand-tagline">Adaptive Skill Testing</span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#quiz-hub" class="nav-link active">Live Quizzes</a></li>
+        <li><a href="#flashcards" class="nav-link">Smart Flashcards</a></li>
+        <li><a href="#masterclass" class="nav-link">Video Masterclass</a></li>
+        <li><a href="#leaderboard" class="nav-link">Leaderboards</a></li>
+      </ul>
+
+      <div class="user-stats-strip">
+        <div class="stat-pill streak" title="Current Daily Learning Streak">
+          <span>🔥</span> <span id="nav-streak-counter">5 Days</span>
+        </div>
+        <div class="stat-pill xp" title="Earned Knowledge Experience">
+          <span>⚡</span> <span id="nav-xp-counter">1,420 XP</span>
+        </div>
+        <button class="btn-config-ads" onclick="openAdsConfigModal()" title="View HilltopAds Monetization Zones">
+          <span>⚙️</span> Ad Zones Hub
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==============================================================================
+       ZONE 3: MULTITAG HEADER BANNER (728x90)
+       ============================================================================== -->
+  <div class="ad-header-wrapper">
+    <div id="ad-zone-header-728x90" class="ad-container-728x90">
+      <!-- HilltopAds MultiTag Leaderboard Banner will inject here -->
+    </div>
+  </div>
+
+  <!-- ==============================================================================
+       HERO SHOWCASE SECTION
+       ============================================================================== -->
+  <section class="hero-section" id="hero">
+    <div class="hero-card">
+      <div class="hero-badge-pill">
+        <span>🧠 Cognitive Precision Engine</span> &bull; <span>Version 4.8</span>
+      </div>
+      <h2 class="hero-title">Level Up Your Mind with <span class="gradient-text-teal">Interactive Quizzes & Flashcards</span></h2>
+      <p class="hero-subtitle">
+        Accelerate your mastery across Science, Full-Stack Coding, and Global Trivia. 
+        Track live score analytics, climb the real-time scholar leaderboards, and generate verified certificates upon test completion.
+      </p>
+
+      <div class="hero-cta-group">
+        <button class="btn-primary" id="btn-start-drill">
+          <span>🚀</span> Start Instant Skill Drill
+        </button>
+        <!-- ZONE 5: Direct Link / SmartLink CTAs -->
+        <a href="#" class="btn-secondary smartlink-cta btn-view-certificate" data-ad-action="View Quiz Certificate">
+          <span>🎓</span> View Quiz Certificate
+        </a>
+        <a href="#" class="btn-amber-outline smartlink-cta btn-download-notes" data-ad-action="Download Study Notes">
+          <span>📚</span> Download Study Notes (PDF)
+        </a>
+      </div>
+
+      <div class="hero-stats-row">
+        <div class="hero-stat-item">
+          <span class="hero-stat-num" id="stat-quiz-count">85,240+</span>
+          <span class="hero-stat-lbl">Quizzes Solved</span>
+        </div>
+        <div class="hero-stat-item">
+          <span class="hero-stat-num">98.4%</span>
+          <span class="hero-stat-lbl">Retention Rate</span>
+        </div>
+        <div class="hero-stat-item">
+          <span class="hero-stat-num">15 Tracks</span>
+          <span class="hero-stat-lbl">STEM & Coding Curriculum</span>
+        </div>
+        <div class="hero-stat-item">
+          <span class="hero-stat-num">Verified</span>
+          <span class="hero-stat-lbl">Digital Credentials</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================================================
+       MAIN APPLICATION LAYOUT: QUIZ ENGINE & SIDEBAR
+       ============================================================================== -->
+  <main class="main-app-container" id="quiz-hub">
+    <!-- LEFT COLUMN: QUIZ ENGINE + FLASHCARDS + VIDEO MASTERCLASS -->
+    <div class="app-main-content">
+      
+      <!-- Category Strip -->
+      <div class="category-strip" role="tablist">
+        <button class="cat-tab-btn active" data-category="all">
+          <span>🌐</span> All Categories
+        </button>
+        <button class="cat-tab-btn" data-category="science">
+          <span>🔬</span> Science & Nature
+        </button>
+        <button class="cat-tab-btn" data-category="coding">
+          <span>💻</span> Coding & Web Tech
+        </button>
+        <button class="cat-tab-btn" data-category="general">
+          <span>🌍</span> General Knowledge
+        </button>
+      </div>
+
+      <!-- ==========================================================================
+           INTERACTIVE LIVE QUIZ ENGINE CARD
+           ========================================================================== -->
+      <div class="quiz-engine-card" id="quiz-container">
+        
+        <!-- Live Play View -->
+        <div class="quiz-play-view" id="quiz-play-view">
+          <div class="quiz-header-status">
+            <div class="quiz-badge-wrap">
+              <span class="quiz-category-pill" id="current-cat-badge">🔬 Science & Nature</span>
+              <span class="difficulty-pill intermediate" id="current-diff-badge">Intermediate</span>
+            </div>
+            <div class="quiz-telemetry">
+              <div class="quiz-timer-box" id="quiz-timer">
+                <span>⏱</span> <span id="timer-seconds">20</span>s
+              </div>
+              <div class="quiz-score-pill">
+                <span>Score:</span> <strong id="live-score">0 XP</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- Animated Progress Bar -->
+          <div class="quiz-progress-track">
+            <div class="quiz-progress-fill" id="quiz-progress-bar"></div>
+          </div>
+
+          <!-- Question Prompt -->
+          <div class="quiz-question-box">
+            <div class="question-meta-row">
+              <span id="question-progress-text">Question 1 of 6</span>
+              <span id="streak-combo-badge">Streak: 🔥 0x</span>
+            </div>
+            <h3 class="quiz-question-text" id="question-text">
+              Loading interactive question prompt...
+            </h3>
+          </div>
+
+          <!-- 4 Multiple Choice Options -->
+          <div class="quiz-options-grid" id="options-container">
+            <!-- Dynamic Buttons Generated By JavaScript -->
+          </div>
+
+          <!-- Educational Explanation Box -->
+          <div class="quiz-explanation-box" id="explanation-box">
+            <div class="quiz-explanation-title">
+              <span>💡</span> Scholar Insight & Explanation:
+            </div>
+            <p class="quiz-explanation-text" id="explanation-text"></p>
+          </div>
+
+          <!-- Action Controls -->
+          <div class="quiz-footer-actions">
+            <button class="btn-hint" id="btn-show-hint">
+              <span>🔎</span> Reveal Hint (-5 XP)
+            </button>
+            <button class="btn-next-question" id="btn-next-question" disabled>
+              Next Question <span>&rarr;</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Quiz Result & Dynamic Certificate View -->
+        <div class="quiz-result-view" id="quiz-result-view">
+          <div class="result-trophy-icon">🏆</div>
+          <h3 class="result-title">Skill Assessment Complete!</h3>
+          <p class="result-subtitle" id="result-verdict">
+            Outstanding mastery. You have qualified for the BrainForge Scholar Honors.
+          </p>
+
+          <div class="result-metrics-grid">
+            <div class="metric-card">
+              <span class="metric-val" id="result-final-score">280 XP</span>
+              <span class="metric-lbl">Total Experience</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-val" id="result-accuracy">83%</span>
+              <span class="metric-lbl">Accuracy Rate</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-val" id="result-correct-count">5 / 6</span>
+              <span class="metric-lbl">Correct Answers</span>
+            </div>
+          </div>
+
+          <!-- Dynamic Certificate Preview -->
+          <div class="certificate-preview-box">
+            <div class="cert-border-corner cert-top-left"></div>
+            <div class="cert-border-corner cert-top-right"></div>
+            <div class="cert-border-corner cert-bottom-left"></div>
+            <div class="cert-border-corner cert-bottom-right"></div>
+
+            <div class="cert-issuer">BrainForge Institute of Cognitive Sciences</div>
+            <h4 class="cert-title">Certificate of Cognitive Proficiency</h4>
+            <div class="cert-for">This certifies that</div>
+            <div class="cert-recipient" id="cert-user-name" contenteditable="true" title="Click to edit your name">Alex Mercer</div>
+            <p class="cert-description" id="cert-desc-text">
+              Has successfully completed the BrainForge Advanced Skill Drill with exemplary score accuracy and conceptual understanding.
+            </p>
+            <div class="cert-footer-row">
+              <span>Serial ID: <strong>BF-2026-99824X</strong></span>
+              <span class="cert-seal">VERIFIED ACCREDITED</span>
+              <span>Date: <strong id="cert-date-text">October 2026</strong></span>
+            </div>
+          </div>
+
+          <!-- Zone 5 Direct Link Result CTAs -->
+          <div class="result-cta-group">
+            <a href="#" class="btn-primary smartlink-cta btn-view-certificate" data-ad-action="View High-Res Certificate">
+              <span>🎓</span> View Quiz Certificate (Official PDF)
+            </a>
+            <a href="#" class="btn-secondary smartlink-cta btn-download-notes" data-ad-action="Download Question Breakdown">
+              <span>📚</span> Download Study Notes & Explanations
+            </a>
+            <button class="btn-amber-outline" id="btn-restart-quiz">
+              <span>🔄</span> Retake Challenge
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ==========================================================================
+           INTERACTIVE 3D FLASHCARDS MODULE
+           ========================================================================== -->
+      <section class="flashcards-section" id="flashcards">
+        <div class="section-head-row">
+          <h3 class="section-title">
+            <span>🎴</span> Smart 3D Flashcards
+          </h3>
+          <div class="stat-pill xp">
+            <span id="flashcard-deck-status">Card 1 of 8</span>
+          </div>
+        </div>
+
+        <div class="flashcard-stage">
+          <div class="flashcard" id="interactive-flashcard">
+            <!-- Front Face -->
+            <div class="flashcard-face flashcard-front">
+              <div class="card-top-label">
+                <span class="card-topic-tag" id="card-topic">Quantum Physics</span>
+                <span class="card-click-hint">Click card to reveal answer ⤾</span>
+              </div>
+              <div class="card-center-prompt">
+                <h4 class="card-question-text" id="card-prompt">
+                  What is Quantum Superposition and how does Schrödinger's Wave Function describe it?
+                </h4>
+              </div>
+              <div class="card-bottom-bar">
+                <span>Subject: Fundamental Physics</span>
+                <span>Tap or Spacebar to flip</span>
+              </div>
+            </div>
+
+            <!-- Back Face -->
+            <div class="flashcard-face flashcard-back">
+              <div class="card-top-label">
+                <span class="card-topic-tag" id="card-back-topic">Conceptual Breakdown</span>
+                <span class="card-click-hint">Click to flip back ⤿</span>
+              </div>
+              <div class="card-center-prompt">
+                <p class="card-back-explanation" id="card-explanation">
+                  A physical system exists partly in all theoretically possible states simultaneously until measured. 
+                  The linear combination of state vectors is represented mathematically by |Ψ⟩ = α|0⟩ + β|1⟩.
+                </p>
+                <div class="card-back-fact" id="card-fact">
+                  💡 Key takeaway: Measurement causes wavefunction collapse into an eigenstate.
+                </div>
+              </div>
+              <div class="card-bottom-bar">
+                <span>Verified by Cambridge Open Courseware</span>
+                <span>Active Recall Protocol</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flashcard-controls">
+          <button class="btn-flashcard-ctrl" id="btn-card-prev">
+            <span>&larr;</span> Previous
+          </button>
+          <button class="btn-flashcard-ctrl" id="btn-card-flip">
+            <span>🔄</span> Flip Card
+          </button>
+          <button class="btn-flashcard-ctrl" id="btn-card-next">
+            Next <span>&rarr;</span>
+          </button>
+          <button class="btn-flashcard-ctrl" id="btn-card-shuffle">
+            <span>🔀</span> Shuffle Deck
+          </button>
+        </div>
+      </section>
+
+      <!-- ==========================================================================
+           EDUCATIONAL VIDEO MASTERCLASS (ZONE 6 VAST INTEGRATION)
+           ========================================================================== -->
+      <section class="video-masterclass-section" id="masterclass">
+        <div class="section-head-row">
+          <h3 class="section-title">
+            <span>🎥</span> Masterclass: Neural Networks & Quantum Computing
+          </h3>
+          <span class="stat-pill streak">HilltopAds VAST Tag Enabled</span>
+        </div>
+
+        <!-- HTML5 Video Player Container -->
+        <div class="video-player-container">
+          <video 
+            id="brainforge-edu-player" 
+            class="edu-video" 
+            poster="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80"
+            controls
+          >
+            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+
+          <!-- Zone 6: Video VAST Overlay Tag -->
+          <div id="vast-ad-overlay" class="vast-ad-overlay">
+            <div class="vast-top-bar">
+              <span class="vast-sponsor-pill">SPONSORED VAST PRE-ROLL</span>
+              <span class="vast-countdown-timer">Ad: 0:15</span>
+            </div>
+
+            <div class="vast-ad-showcase">
+              <div class="vast-brand-icon">🎓</div>
+              <h4 class="vast-title">Next-Gen Full-Stack AI Developer Bootcamp</h4>
+              <p class="vast-desc">
+                Accelerate your career with real-world LLM orchestration, vector databases, and high-frequency algorithms.
+              </p>
+              <a href="#" class="vast-visit-btn smartlink-cta" data-ad-action="VAST Ad Sponsor Link">
+                Learn More &rarr;
+              </a>
+            </div>
+
+            <div class="vast-bottom-bar">
+              <div class="vast-progress-bar-track">
+                <div class="vast-progress-bar-fill"></div>
+              </div>
+              <div class="vast-actions-row">
+                <span class="vast-zone-label">HilltopAds Zone 6 &bull; Linear VAST Tag</span>
+                <button class="vast-skip-action-btn" disabled>Skip in 5s</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <button class="btn-primary" id="vast-play-trigger">
+            <span>▶</span> Play Video (Triggers VAST Pre-Roll)
+          </button>
+          <a href="#" class="btn-secondary smartlink-cta btn-download-notes" data-ad-action="Download Masterclass Slides">
+            <span>📥</span> Download Masterclass Slides (PDF)
+          </a>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- RIGHT COLUMN: SIDEBAR (ZONE 3 BANNER + LEADERBOARDS + RESOURCES) -->
+    <aside class="app-sidebar" id="leaderboard">
+      
+      <!-- ========================================================================
+           ZONE 3: MULTITAG SIDEBAR BANNER (300x250)
+           ======================================================================== -->
+      <div id="ad-zone-sidebar-300x250" class="ad-container-300x250">
+        <!-- HilltopAds MultiTag Sidebar Banner will inject here -->
+      </div>
+
+      <!-- Real-Time Study Leaderboard -->
+      <div class="sidebar-widget">
+        <h4 class="widget-title">
+          <span>🏆 Daily Scholar Leaderboard</span>
+          <span style="font-size: 0.72rem; color: var(--teal-light); font-weight: 700;">LIVE</span>
+        </h4>
+        
+        <div class="leaderboard-list">
+          <div class="leaderboard-item rank-1">
+            <span class="rank-badge">1</span>
+            <span class="user-avatar">🧙‍♂️</span>
+            <div class="user-info">
+              <span class="user-name">Elena Rostova</span>
+              <span class="user-title-sub">Quantum Specialist &bull; Lv 18</span>
+            </div>
+            <div class="user-score">
+              <span class="user-xp">4,850 XP</span>
+              <span class="user-accuracy">99.2% Acc</span>
+            </div>
+          </div>
+
+          <div class="leaderboard-item rank-2">
+            <span class="rank-badge">2</span>
+            <span class="user-avatar">👩‍💻</span>
+            <div class="user-info">
+              <span class="user-name">Marcus Vance</span>
+              <span class="user-title-sub">Algorithm Architect &bull; Lv 16</span>
+            </div>
+            <div class="user-score">
+              <span class="user-xp">4,120 XP</span>
+              <span class="user-accuracy">96.5% Acc</span>
+            </div>
+          </div>
+
+          <div class="leaderboard-item rank-3">
+            <span class="rank-badge">3</span>
+            <span class="user-avatar">👨‍🔬</span>
+            <div class="user-info">
+              <span class="user-name">Liam Chen</span>
+              <span class="user-title-sub">Astrobiologist &bull; Lv 15</span>
+            </div>
+            <div class="user-score">
+              <span class="user-xp">3,790 XP</span>
+              <span class="user-accuracy">94.8% Acc</span>
+            </div>
+          </div>
+
+          <div class="leaderboard-item">
+            <span class="rank-badge">4</span>
+            <span class="user-avatar">⚡</span>
+            <div class="user-info">
+              <span class="user-name">Sophia Taylor</span>
+              <span class="user-title-sub">History Scholar &bull; Lv 12</span>
+            </div>
+            <div class="user-score">
+              <span class="user-xp">3,240 XP</span>
+              <span class="user-accuracy">92.0% Acc</span>
+            </div>
+          </div>
+
+          <div class="leaderboard-item">
+            <span class="rank-badge">5</span>
+            <span class="user-avatar">🚀</span>
+            <div class="user-info">
+              <span class="user-name">Alex Mercer (You)</span>
+              <span class="user-title-sub">BrainForge Apprentice &bull; Lv 7</span>
+            </div>
+            <div class="user-score">
+              <span class="user-xp" id="sidebar-user-xp">1,420 XP</span>
+              <span class="user-accuracy">89.4% Acc</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Study Material Direct Link Downloads (Zone 5 SmartLinks) -->
+      <div class="sidebar-widget">
+        <h4 class="widget-title">
+          <span>📚 Curated Study Blueprints</span>
+        </h4>
+
+        <div class="download-card-list">
+          <div class="download-item-card">
+            <div class="download-card-header">
+              <span>PDF GUIDE &bull; 48 PGS</span>
+            </div>
+            <h5 class="download-card-title">Top 50 JavaScript & Python Code Challenges</h5>
+            <p style="font-size: 0.78rem; color: var(--text-muted);">Comprehensive algorithms, Big-O analysis, and interview patterns.</p>
+            <a href="#" class="btn-sidebar-dl smartlink-cta" data-ad-action="Download JS & Python Blueprint">
+              <span>⚡</span> Download Blueprint (Free)
+            </a>
+          </div>
+
+          <div class="download-item-card">
+            <div class="download-card-header">
+              <span>CHEATSHEET &bull; 24 PGS</span>
+            </div>
+            <h5 class="download-card-title">Particle Physics & Cosmology Handbook</h5>
+            <p style="font-size: 0.78rem; color: var(--text-muted);">Standard model diagrams, relativity formulas, and space telescopes.</p>
+            <a href="#" class="btn-sidebar-dl smartlink-cta" data-ad-action="Download Physics Handbook">
+              <span>🔬</span> Download Handbook
+            </a>
+          </div>
+
+          <div class="download-item-card">
+            <div class="download-card-header">
+              <span>EXAM PREP &bull; 35 PGS</span>
+            </div>
+            <h5 class="download-card-title">World History & Civilizations Timeline</h5>
+            <p style="font-size: 0.78rem; color: var(--text-muted);">Key revolutions, architectural monuments, and epochal treaties.</p>
+            <a href="#" class="btn-sidebar-dl smartlink-cta" data-ad-action="Download History Timeline">
+              <span>🌍</span> Download Timeline
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </aside>
+  </main>
+
+  <!-- ==============================================================================
+       ZONE 2: IN-PAGE PUSH MULTITAG CONTAINER
+       ============================================================================== -->
+  <div id="ad-zone-inpage-push" class="ad-zone-inpage-push">
+    <!-- HilltopAds IPP Card dynamically injected here -->
+  </div>
+
+  <!-- ==============================================================================
+       ZONE 4: VIDEO SLIDER MULTITAG CONTAINER
+       ============================================================================== -->
+  <div id="ad-zone-video-slider" class="ad-zone-video-slider">
+    <!-- HilltopAds Video Slider Unit dynamically injected here -->
+  </div>
+
+  <!-- Toast Notification Hub -->
+  <div id="ad-toast-container" class="ad-toast-container"></div>
+
+  <!-- ==============================================================================
+       HILLTOPADS CONFIGURATION INSPECTOR MODAL
+       ============================================================================== -->
+  <div class="config-modal-backdrop" id="ads-config-modal">
+    <div class="config-modal-panel">
+      <div class="modal-header-row">
+        <h3 class="modal-title">
+          <span>⚙️</span> HilltopAds Monetization Zones Configuration
+        </h3>
+        <button class="modal-close-icon" onclick="closeAdsConfigModal()">&times;</button>
+      </div>
+
+      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+        BrainForge is equipped with all 6 HilltopAds monetization ad zones. In <strong>Demo Mode</strong>, 
+        interactive mock ads and guidance toasts are active. Enter your live Zone IDs below to deploy production ads.
+      </p>
+
+      <table class="config-zone-table">
+        <thead>
+          <tr>
+            <th>Zone #</th>
+            <th>Ad Format</th>
+            <th>Placement Slot</th>
+            <th>Zone ID Setting</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Zone 1</strong></td>
+            <td>Popunder / OnClick</td>
+            <td>Global Page Click Listener</td>
+            <td><input type="text" id="cfg-zone-1" class="zone-input" value="YOUR_POPUNDER_ZONE_ID"></td>
+          </tr>
+          <tr>
+            <td><strong>Zone 2</strong></td>
+            <td>In-Page Push (IPP)</td>
+            <td>Bottom-Right Viewport (#ad-zone-inpage-push)</td>
+            <td><input type="text" id="cfg-zone-2" class="zone-input" value="YOUR_IPP_ZONE_ID"></td>
+          </tr>
+          <tr>
+            <td><strong>Zone 3A</strong></td>
+            <td>MultiTag Banner 728x90</td>
+            <td>Top Header Leaderboard (#ad-zone-header-728x90)</td>
+            <td><input type="text" id="cfg-zone-3a" class="zone-input" value="YOUR_HEADER_BANNER_ZONE_ID"></td>
+          </tr>
+          <tr>
+            <td><strong>Zone 3B</strong></td>
+            <td>MultiTag Banner 300x250</td>
+            <td>Quiz Sidebar (#ad-zone-sidebar-300x250)</td>
+            <td><input type="text" id="cfg-zone-3b" class="zone-input" value="YOUR_SIDEBAR_BANNER_ZONE_ID"></td>
+          </tr>
+          <tr>
+            <td><strong>Zone 4</strong></td>
+            <td>Video Slider MultiTag</td>
+            <td>Corner Outstream (#ad-zone-video-slider)</td>
+            <td><input type="text" id="cfg-zone-4" class="zone-input" value="YOUR_VIDEO_SLIDER_ZONE_ID"></td>
+          </tr>
+          <tr>
+            <td><strong>Zone 5</strong></td>
+            <td>Direct Link / SmartLink</td>
+            <td>'View Certificate', 'Download Study Notes' CTAs</td>
+            <td><input type="text" id="cfg-zone-5" class="zone-input" value="YOUR_SMARTLINK_ZONE_ID"></td>
+          </tr>
+          <tr>
+            <td><strong>Zone 6</strong></td>
+            <td>Video VAST Pre-Roll</td>
+            <td>Educational Player (#brainforge-edu-player)</td>
+            <td><input type="text" id="cfg-zone-6" class="zone-input" value="YOUR_VAST_ZONE_ID"></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+        <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; cursor: pointer;">
+          <input type="checkbox" id="cfg-demo-toggle" checked>
+          <span>Enable Demo Mode (Visual placeholders & toast notifications)</span>
+        </label>
+        <button class="btn-primary" id="btn-save-ads-config">
+          Save Configuration
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==============================================================================
+       PLATFORM FOOTER
+       ============================================================================== -->
+  <footer class="platform-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="brand-logo" style="margin-bottom: 0.5rem;">
+          <div class="brand-icon">⚡</div>
+          <div class="brand-text">
+            <h1>BrainForge</h1>
+            <span class="brand-tagline">Cognitive Testing Platform</span>
+          </div>
+        </div>
+        <p>
+          Empowering millions of self-directed learners with interactive assessment engines, 
+          spaced-repetition flashcards, and verified academic milestones.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Learning Paths</h4>
+        <ul>
+          <li><a href="#quiz-hub">Science & Physics</a></li>
+          <li><a href="#quiz-hub">JavaScript & Python</a></li>
+          <li><a href="#quiz-hub">Algorithms & Big-O</a></li>
+          <li><a href="#quiz-hub">World History Trivia</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Monetization & Ads</h4>
+        <ul>
+          <li><a href="javascript:openAdsConfigModal()">HilltopAds Settings</a></li>
+          <li><a href="javascript:openAdsConfigModal()">Zone 1: Popunder Tag</a></li>
+          <li><a href="javascript:openAdsConfigModal()">Zone 2: In-Page Push</a></li>
+          <li><a href="javascript:openAdsConfigModal()">Zone 6: Video VAST</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Legal & Trust</h4>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Publisher Disclosure</a></li>
+          <li><a href="#">Ad Choices</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom-bar">
+      <span>&copy; 2026 BrainForge Educational Systems Inc. All rights reserved.</span>
+      <span>HilltopAds Verified Monetization Partner &bull; High eCPM Integration</span>
+    </div>
+  </footer>
+
+  <!-- ==============================================================================
+       CORE APPLICATION JAVASCRIPT (QUIZZES, FLASHCARDS, LIVE SCORES)
+       ============================================================================== -->
+  <script>
+    // Comprehensive Questions Database
+    const QUIZ_QUESTIONS = [
+      {
+        id: 1,
+        category: "science",
+        categoryName: "Science & Nature",
+        difficulty: "Intermediate",
+        difficultyClass: "intermediate",
+        question: "What fundamental particle gives mass to elementary particles via spontaneous symmetry breaking?",
+        options: [
+          "Higgs Boson",
+          "Top Quark",
+          "Gluon",
+          "Neutrino"
+        ],
+        correctIndex: 0,
+        hint: "Discovered at CERN's Large Hadron Collider in 2012, nicknamed the 'God Particle'.",
+        explanation: "The Higgs boson is the excitation of the Higgs field, which endows quarks and leptons with mass through the Brout-Englert-Higgs mechanism."
+      },
+      {
+        id: 2,
+        category: "science",
+        categoryName: "Science & Nature",
+        difficulty: "Advanced",
+        difficultyClass: "advanced",
+        question: "In astrophysics, what is the boundary surrounding a black hole from which no light or matter can escape?",
+        options: [
+          "Ergosphere",
+          "Event Horizon",
+          "Photon Sphere",
+          "Accretion Boundary"
+        ],
+        correctIndex: 1,
+        hint: "The radius defining this boundary is called the Schwarzschild radius.",
+        explanation: "The event horizon marks the mathematical threshold where escape velocity matches the speed of light in vacuum (c)."
+      },
+      {
+        id: 3,
+        category: "coding",
+        categoryName: "Coding & Web Tech",
+        difficulty: "Beginner",
+        difficultyClass: "beginner",
+        question: "In modern JavaScript (ES6+), which declaration defines a block-scoped variable that cannot be reassigned?",
+        options: [
+          "var",
+          "let",
+          "const",
+          "static"
+        ],
+        correctIndex: 2,
+        hint: "Its name is short for 'constant' value binding.",
+        explanation: "The 'const' declaration creates an immutable binding in block scope, preventing re-assignment of the variable identifier."
+      },
+      {
+        id: 4,
+        category: "coding",
+        categoryName: "Coding & Web Tech",
+        difficulty: "Intermediate",
+        difficultyClass: "intermediate",
+        question: "What is the average time complexity of searching for an arbitrary key in an optimal Hash Table?",
+        options: [
+          "O(n)",
+          "O(log n)",
+          "O(1)",
+          "O(n log n)"
+        ],
+        correctIndex: 2,
+        hint: "Hash functions map the key directly to an array bucket index in constant time.",
+        explanation: "Under uniform hashing with a low load factor, lookup in a hash table requires O(1) average constant time."
+      },
+      {
+        id: 5,
+        category: "general",
+        categoryName: "General Knowledge",
+        difficulty: "Beginner",
+        difficultyClass: "beginner",
+        question: "Which ancient civilization in Mesopotamia developed cuneiform, one of mankind's earliest written scripts?",
+        options: [
+          "The Sumerians",
+          "The Phoenicians",
+          "The Minoans",
+          "The Hittites"
+        ],
+        correctIndex: 0,
+        hint: "They also built the great Ziggurats of Ur around 3000 BCE.",
+        explanation: "Sumerians invented cuneiform script around 3400–3200 BCE, using wedge-shaped styluses pressed into soft clay tablets."
+      },
+      {
+        id: 6,
+        category: "science",
+        categoryName: "Science & Nature",
+        difficulty: "Beginner",
+        difficultyClass: "beginner",
+        question: "Which organelle generates the vast majority of chemical energy (ATP) in eukaryotic animal cells?",
+        options: [
+          "Golgi Apparatus",
+          "Mitochondria",
+          "Endoplasmic Reticulum",
+          "Peroxisome"
+        ],
+        correctIndex: 1,
+        hint: "Often celebrated as the powerhouse of the cell, possesses its own circular DNA.",
+        explanation: "Mitochondria produce ATP through oxidative phosphorylation along the electron transport chain."
+      },
+      {
+        id: 7,
+        category: "coding",
+        categoryName: "Coding & Web Tech",
+        difficulty: "Advanced",
+        difficultyClass: "advanced",
+        question: "In CSS layout engines, which property initiates a two-dimensional grid coordinate system with rows and columns?",
+        options: [
+          "display: flex",
+          "display: grid",
+          "display: table-cell",
+          "display: subgrid"
+        ],
+        correctIndex: 1,
+        hint: "Unlike Flexbox which is 1D (row or column), this system manages both axes simultaneously.",
+        explanation: "The 'display: grid' property defines the element as a grid container, establishing a two-dimensional layout context."
+      },
+      {
+        id: 8,
+        category: "general",
+        categoryName: "General Knowledge",
+        difficulty: "Intermediate",
+        difficultyClass: "intermediate",
+        question: "What is the deepest known oceanic trench on planet Earth, located in the western Pacific Ocean?",
+        options: [
+          "Java Trench",
+          "Puerto Rico Trench",
+          "Mariana Trench",
+          "Kermadec Trench"
+        ],
+        correctIndex: 2,
+        hint: "Its lowest point is the Challenger Deep, reaching nearly 11,000 meters below sea level.",
+        explanation: "The Mariana Trench reaches a maximum depth of approximately 10,994 meters (36,070 feet) in the Challenger Deep."
+      }
+    ];
+
+    // Flashcards Database
+    const FLASHCARDS_DECK = [
+      {
+        topic: "Quantum Physics",
+        prompt: "What is Quantum Superposition and how does the Wave Function represent it?",
+        explanation: "A physical system exists in all theoretically possible states simultaneously until an observation or measurement is performed. Mathematically expressed as |Ψ⟩ = α|0⟩ + β|1⟩.",
+        fact: "💡 Key takeaway: Observing the system forces wavefunction collapse into a single definitive eigenstate."
+      },
+      {
+        topic: "Full-Stack Coding",
+        prompt: "What is the JavaScript Event Loop and how does the Microtask Queue differ from Macrotask Queue?",
+        explanation: "The Event Loop continuously monitors Call Stack execution. Promises (.then, async/await) and queueMicrotask populate the microtask queue, which is completely emptied before the next macrotask (setTimeout, setInterval) runs.",
+        fact: "⚡ Microtasks always execute with higher priority than regular timers."
+      },
+      {
+        topic: "Computer Science",
+        prompt: "What distinguishes BFS (Breadth-First Search) from DFS (Depth-First Search) in graph traversal?",
+        explanation: "BFS explores vertex neighbors level by level using a FIFO Queue and guarantees the shortest path on unweighted graphs. DFS explores deep along each branch using a LIFO Stack or recursion.",
+        fact: "🧭 Space complexity: BFS uses O(V) space for queue while DFS uses O(H) call stack height."
+      },
+      {
+        topic: "Genetics & Biology",
+        prompt: "What is CRISPR-Cas9 and what biological role does the guide RNA (gRNA) serve?",
+        explanation: "CRISPR-Cas9 is a molecular gene editing tool derived from bacterial immune systems. The guide RNA (gRNA) contains a 20-base sequence that guides the Cas9 endonuclease to cut the specific matching DNA target.",
+        fact: "🧬 Key enzyme: Cas9 creates double-stranded breaks that activate cellular repair pathways."
+      },
+      {
+        topic: "World History",
+        prompt: "What was the significance of the 1648 Peace of Westphalia in international relations?",
+        explanation: "It ended the Thirty Years' War in Europe and established the doctrine of Westphalian sovereignty: the principle that sovereign states have exclusive authority over their domestic territories and religions.",
+        fact: "🏛 Legacy: Established the conceptual foundation of the modern nation-state framework."
+      }
+    ];
+
+    // Quiz Engine State Controller
+    class QuizApp {
+      constructor() {
+        this.allQuestions = QUIZ_QUESTIONS;
+        this.currentQuestions = [...this.allQuestions];
+        this.currentIndex = 0;
+        this.scoreXP = 0;
+        this.streak = 0;
+        this.correctCount = 0;
+        this.answered = false;
+        this.timer = null;
+        this.timeLeft = 20;
+
+        // Flashcards state
+        this.flashcards = [...FLASHCARDS_DECK];
+        this.cardIndex = 0;
+        this.isFlipped = false;
+
+        this.init();
+      }
+
+      init() {
+        this.cacheDOM();
+        this.bindEvents();
+        this.loadQuestion();
+        this.renderFlashcard();
+      }
+
+      cacheDOM() {
+        this.catButtons = document.querySelectorAll(".cat-tab-btn");
+        this.playView = document.getElementById("quiz-play-view");
+        this.resultView = document.getElementById("quiz-result-view");
+        this.catBadge = document.getElementById("current-cat-badge");
+        this.diffBadge = document.getElementById("current-diff-badge");
+        this.timerEl = document.getElementById("timer-seconds");
+        this.timerBox = document.getElementById("quiz-timer");
+        this.scoreEl = document.getElementById("live-score");
+        this.progressBar = document.getElementById("quiz-progress-bar");
+        this.progressText = document.getElementById("question-progress-text");
+        this.streakBadge = document.getElementById("streak-combo-badge");
+        this.questionText = document.getElementById("question-text");
+        this.optionsContainer = document.getElementById("options-container");
+        this.explanationBox = document.getElementById("explanation-box");
+        this.explanationText = document.getElementById("explanation-text");
+        this.btnNext = document.getElementById("btn-next-question");
+        this.btnHint = document.getElementById("btn-show-hint");
+        this.btnRestart = document.getElementById("btn-restart-quiz");
+
+        // Flashcard elements
+        this.flashcardEl = document.getElementById("interactive-flashcard");
+        this.cardTopicEl = document.getElementById("card-topic");
+        this.cardPromptEl = document.getElementById("card-prompt");
+        this.cardExplanationEl = document.getElementById("card-explanation");
+        this.cardFactEl = document.getElementById("card-fact");
+        this.cardDeckStatus = document.getElementById("flashcard-deck-status");
+        this.btnCardPrev = document.getElementById("btn-card-prev");
+        this.btnCardFlip = document.getElementById("btn-card-flip");
+        this.btnCardNext = document.getElementById("btn-card-next");
+        this.btnCardShuffle = document.getElementById("btn-card-shuffle");
+
+        // Navigation counters
+        this.navXpEl = document.getElementById("nav-xp-counter");
+        this.sidebarXpEl = document.getElementById("sidebar-user-xp");
+      }
+
+      bindEvents() {
+        // Category filtering
+        this.catButtons.forEach(btn => {
+          btn.addEventListener("click", () => {
+            this.catButtons.forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            const cat = btn.getAttribute("data-category");
+            this.filterCategory(cat);
+          });
+        });
+
+        // Next question
+        this.btnNext.addEventListener("click", () => {
+          this.currentIndex++;
+          if (this.currentIndex < this.currentQuestions.length) {
+            this.loadQuestion();
+          } else {
+            this.showResults();
+          }
+        });
+
+        // Hint button
+        this.btnHint.addEventListener("click", () => {
+          const q = this.currentQuestions[this.currentIndex];
+          if (q && q.hint) {
+            alert(`💡 Hint: ${q.hint}`);
+            this.scoreXP = Math.max(0, this.scoreXP - 5);
+            this.updateTelemetry();
+          }
+        });
+
+        // Restart quiz
+        this.btnRestart.addEventListener("click", () => {
+          this.currentIndex = 0;
+          this.scoreXP = 0;
+          this.streak = 0;
+          this.correctCount = 0;
+          this.resultView.classList.remove("active");
+          this.playView.style.display = "block";
+          this.loadQuestion();
+        });
+
+        // Flashcard events
+        this.flashcardEl.addEventListener("click", () => this.toggleCardFlip());
+        this.btnCardFlip.addEventListener("click", () => this.toggleCardFlip());
+        this.btnCardNext.addEventListener("click", () => this.nextCard());
+        this.btnCardPrev.addEventListener("click", () => this.prevCard());
+        this.btnCardShuffle.addEventListener("click", () => this.shuffleCards());
+
+        // Jump to quiz hero CTA
+        const jumpBtn = document.getElementById("btn-start-drill");
+        if (jumpBtn) {
+          jumpBtn.addEventListener("click", () => {
+            document.getElementById("quiz-hub").scrollIntoView({ behavior: "smooth" });
+          });
+        }
+      }
+
+      filterCategory(cat) {
+        if (cat === "all") {
+          this.currentQuestions = [...this.allQuestions];
+        } else {
+          this.currentQuestions = this.allQuestions.filter(q => q.category === cat);
+        }
+        this.currentIndex = 0;
+        this.scoreXP = 0;
+        this.streak = 0;
+        this.correctCount = 0;
+        this.resultView.classList.remove("active");
+        this.playView.style.display = "block";
+        this.loadQuestion();
+      }
+
+      startTimer() {
+        clearInterval(this.timer);
+        this.timeLeft = 20;
+        this.timerEl.textContent = this.timeLeft;
+        this.timerBox.classList.remove("timer-urgent");
+
+        this.timer = setInterval(() => {
+          this.timeLeft--;
+          this.timerEl.textContent = this.timeLeft;
+
+          if (this.timeLeft <= 5) {
+            this.timerBox.classList.add("timer-urgent");
+          }
+
+          if (this.timeLeft <= 0) {
+            clearInterval(this.timer);
+            if (!this.answered) {
+              this.handleTimeout();
+            }
+          }
+        }, 1000);
+      }
+
+      handleTimeout() {
+        this.answered = true;
+        this.streak = 0;
+        this.btnNext.disabled = false;
+        const q = this.currentQuestions[this.currentIndex];
+
+        const optionBtns = this.optionsContainer.querySelectorAll(".option-btn");
+        optionBtns.forEach((btn, idx) => {
+          btn.disabled = true;
+          if (idx === q.correctIndex) {
+            btn.classList.add("correct");
+          }
+        });
+
+        this.explanationText.textContent = `Time's up! ${q.explanation}`;
+        this.explanationBox.classList.add("visible");
+        this.updateTelemetry();
+      }
+
+      loadQuestion() {
+        this.answered = false;
+        this.btnNext.disabled = true;
+        this.explanationBox.classList.remove("visible");
+
+        const q = this.currentQuestions[this.currentIndex];
+        if (!q) return;
+
+        // Update badges
+        this.catBadge.textContent = q.categoryName;
+        this.diffBadge.textContent = q.difficulty;
+        this.diffBadge.className = `difficulty-pill ${q.difficultyClass}`;
+
+        // Update Question text & meta
+        this.questionText.textContent = q.question;
+        this.progressText.textContent = `Question ${this.currentIndex + 1} of ${this.currentQuestions.length}`;
+        const pct = ((this.currentIndex + 1) / this.currentQuestions.length) * 100;
+        this.progressBar.style.width = `${pct}%`;
+
+        // Render options
+        const letters = ["A", "B", "C", "D"];
+        this.optionsContainer.innerHTML = "";
+
+        q.options.forEach((opt, idx) => {
+          const btn = document.createElement("button");
+          btn.className = "option-btn";
+          btn.innerHTML = `
+            <span class="option-letter">${letters[idx]}</span>
+            <span>${opt}</span>
+          `;
+
+          btn.addEventListener("click", () => {
+            if (this.answered) return;
+            this.selectOption(idx, btn);
+          });
+
+          this.optionsContainer.appendChild(btn);
+        });
+
+        this.updateTelemetry();
+        this.startTimer();
+      }
+
+      selectOption(selectedIndex, btnElement) {
+        this.answered = true;
+        clearInterval(this.timer);
+        this.btnNext.disabled = false;
+
+        const q = this.currentQuestions[this.currentIndex];
+        const optionBtns = this.optionsContainer.querySelectorAll(".option-btn");
+
+        optionBtns.forEach(btn => btn.disabled = true);
+
+        if (selectedIndex === q.correctIndex) {
+          // Correct answer
+          btnElement.classList.add("correct");
+          this.correctCount++;
+          this.streak++;
+          const streakMultiplier = 1 + (this.streak * 0.2);
+          const earned = Math.round(20 * streakMultiplier);
+          this.scoreXP += earned;
+
+          // Sound/Visual feedback
+          this.explanationText.textContent = `Correct! (+${earned} XP) ${q.explanation}`;
+        } else {
+          // Incorrect answer
+          btnElement.classList.add("wrong");
+          this.streak = 0;
+          optionBtns[q.correctIndex].classList.add("correct");
+          this.explanationText.textContent = `Incorrect. ${q.explanation}`;
+        }
+
+        this.explanationBox.classList.add("visible");
+        this.updateTelemetry();
+      }
+
+      updateTelemetry() {
+        this.scoreEl.textContent = `${this.scoreXP} XP`;
+        this.streakBadge.textContent = `Streak: 🔥 ${this.streak}x`;
+        this.navXpEl.textContent = `${1420 + this.scoreXP} XP`;
+        this.sidebarXpEl.textContent = `${1420 + this.scoreXP} XP`;
+      }
+
+      showResults() {
+        clearInterval(this.timer);
+        this.playView.style.display = "none";
+        this.resultView.classList.add("active");
+
+        const total = this.currentQuestions.length;
+        const accuracy = Math.round((this.correctCount / total) * 100);
+
+        document.getElementById("result-final-score").textContent = `${this.scoreXP} XP`;
+        document.getElementById("result-accuracy").textContent = `${accuracy}%`;
+        document.getElementById("result-correct-count").textContent = `${this.correctCount} / ${total}`;
+
+        const verdictEl = document.getElementById("result-verdict");
+        if (accuracy >= 80) {
+          verdictEl.textContent = "Outstanding cognitive performance! You achieved Master Scholar standing.";
+        } else if (accuracy >= 50) {
+          verdictEl.textContent = "Commendable effort. Review your missed concepts with the smart flashcards below.";
+        } else {
+          verdictEl.textContent = "Keep practicing! Daily spaced repetition will skyrocket your test accuracy.";
+        }
+
+        // Update Certificate Date
+        const today = new Date();
+        document.getElementById("cert-date-text").textContent = today.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+      }
+
+      // Flashcards logic
+      renderFlashcard() {
+        const card = this.flashcards[this.cardIndex];
+        if (!card) return;
+
+        this.isFlipped = false;
+        this.flashcardEl.classList.remove("flipped");
+
+        this.cardTopicEl.textContent = card.topic;
+        this.cardPromptEl.textContent = card.prompt;
+        this.cardExplanationEl.textContent = card.explanation;
+        this.cardFactEl.textContent = card.fact;
+        this.cardDeckStatus.textContent = `Card ${this.cardIndex + 1} of ${this.flashcards.length}`;
+      }
+
+      toggleCardFlip() {
+        this.isFlipped = !this.isFlipped;
+        this.flashcardEl.classList.toggle("flipped", this.isFlipped);
+      }
+
+      nextCard() {
+        this.cardIndex = (this.cardIndex + 1) % this.flashcards.length;
+        this.renderFlashcard();
+      }
+
+      prevCard() {
+        this.cardIndex = (this.cardIndex - 1 + this.flashcards.length) % this.flashcards.length;
+        this.renderFlashcard();
+      }
+
+      shuffleCards() {
+        this.flashcards.sort(() => Math.random() - 0.5);
+        this.cardIndex = 0;
+        this.renderFlashcard();
+      }
+    }
+
+    // Modal Save Config Button Logic
+    document.addEventListener("DOMContentLoaded", () => {
+      window.quizApp = new QuizApp();
+
+      const saveBtn = document.getElementById("btn-save-ads-config");
+      if (saveBtn) {
+        saveBtn.addEventListener("click", () => {
+          const z1 = document.getElementById("cfg-zone-1").value;
+          const z2 = document.getElementById("cfg-zone-2").value;
+          const z3a = document.getElementById("cfg-zone-3a").value;
+          const z3b = document.getElementById("cfg-zone-3b").value;
+          const z4 = document.getElementById("cfg-zone-4").value;
+          const z5 = document.getElementById("cfg-zone-5").value;
+          const z6 = document.getElementById("cfg-zone-6").value;
+          const demoMode = document.getElementById("cfg-demo-toggle").checked;
+
+          if (window.brainForgeAds) {
+            window.brainForgeAds.config.isDemoMode = demoMode;
+            window.brainForgeAds.config.zone1_popunder.zoneId = z1;
+            window.brainForgeAds.config.zone2_inPagePush.zoneId = z2;
+            window.brainForgeAds.config.zone3_banners.header_728x90.zoneId = z3a;
+            window.brainForgeAds.config.zone3_banners.sidebar_300x250.zoneId = z3b;
+            window.brainForgeAds.config.zone4_videoSlider.zoneId = z4;
+            window.brainForgeAds.config.zone5_directLink.smartLinkUrl = `https://hilltopads.com/smartlink?zone=${encodeURIComponent(z5)}`;
+            window.brainForgeAds.config.zone6_videoVAST.vastTagUrl = `https://example-hilltopads-vast.com/vast.xml?zone=${encodeURIComponent(z6)}`;
+
+            window.brainForgeAds.showToast(
+              "Configuration Updated",
+              `HilltopAds settings saved! Demo Mode: ${demoMode ? "Active" : "Production"}. Zone IDs recorded.`,
+              "teal"
+            );
+          }
+
+          closeAdsConfigModal();
+        });
+      }
+    });
+  </script>
+
+  <!-- ==============================================================================
+       HILLTOPADS MONETIZATION INTEGRATION SCRIPT
+       ============================================================================== -->
+  <script src="ads-config.js"></script>
+</body>
+</html>
