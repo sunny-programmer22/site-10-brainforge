@@ -1,4 +1,4 @@
-/**
+﻿/**
  * ==============================================================================
  * BrainForge - HilltopAds Monetization Configuration & Integration Script
  * ==============================================================================
@@ -47,9 +47,9 @@ const BRAINFORGE_ADS_CONFIG = {
     scriptUrl: "https://example-hilltopads-cdn.com/ipp-multitag.js",
     position: "bottom-right",
     delayMs: 3500, // Appears after 3.5 seconds
-    demoTitle: "🎓 Free Certificate Accreditation",
+    demoTitle: "ðŸŽ“ Free Certificate Accreditation",
     demoMessage: "Complete today's Science & Coding challenge to claim your verified digital badge!",
-    demoIcon: "🏆",
+    demoIcon: "ðŸ†",
     demoTime: "Just now"
   },
 
@@ -113,7 +113,7 @@ const BRAINFORGE_ADS_CONFIG = {
   // ----------------------------------------------------------------------------
   zone6_videoVAST: {
     enabled: true,
-    vastTagUrl: "https://example-hilltopads-vast.com/vast.xml?zone=YOUR_VAST_ZONE_ID",
+    vastTagUrl: "https://faithfuloccasion.com/dumgF/z.d/GKNwvtZtG/UC/ge/mQ9KuHZBU-lwkjP/T_ce1QNsD/Qs5vMVD/UntRNDznUJ0xNnDtkPwBOgQe",
     videoPlayerId: "brainforge-edu-player",
     adOverlayId: "vast-ad-overlay",
     skipTimeSeconds: 5,
@@ -360,7 +360,7 @@ class BrainForgeAdsManager {
               <div class="slider-pulse-radar">
                 <div class="radar-disc"></div>
                 <div class="radar-ring"></div>
-                <span class="radar-play-icon">▶</span>
+                <span class="radar-play-icon">â–¶</span>
               </div>
               <div class="slider-media-info">
                 <span class="slider-category-pill">Featured Learning Series</span>
@@ -577,3 +577,4 @@ document.addEventListener("DOMContentLoaded", () => {
   window.brainForgeAds = new BrainForgeAdsManager(BRAINFORGE_ADS_CONFIG);
   window.brainForgeAds.init();
 });
+
