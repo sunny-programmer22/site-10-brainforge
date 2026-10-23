@@ -1,6 +1,7 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="102f04ced81555720e71aa7a13ea020a66db61a1" content="102f04ced81555720e71aa7a13ea020a66db61a1" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BrainForge | Interactive Quizzes, Skill Tests & Flashcards</title>
@@ -16,9 +17,10 @@
        HEADER NAVIGATION & USER TELEMETRY
        ============================================================================== -->
   <header class="navbar">
+    <meta name="102f04ced81555720e71aa7a13ea020a66db61a1" content="102f04ced81555720e71aa7a13ea020a66db61a1" />
     <div class="nav-container">
       <a href="#hero" class="brand-logo">
-        <div class="brand-icon">⚡</div>
+        <div class="brand-icon">âš¡</div>
         <div class="brand-text">
           <h1>BrainForge</h1>
           <span class="brand-tagline">Adaptive Skill Testing</span>
@@ -34,13 +36,13 @@
 
       <div class="user-stats-strip">
         <div class="stat-pill streak" title="Current Daily Learning Streak">
-          <span>🔥</span> <span id="nav-streak-counter">5 Days</span>
+          <span>ðŸ”¥</span> <span id="nav-streak-counter">5 Days</span>
         </div>
         <div class="stat-pill xp" title="Earned Knowledge Experience">
-          <span>⚡</span> <span id="nav-xp-counter">1,420 XP</span>
+          <span>âš¡</span> <span id="nav-xp-counter">1,420 XP</span>
         </div>
         <button class="btn-config-ads" onclick="openAdsConfigModal()" title="View HilltopAds Monetization Zones">
-          <span>⚙️</span> Ad Zones Hub
+          <span>âš™ï¸</span> Ad Zones Hub
         </button>
       </div>
     </div>
@@ -61,7 +63,7 @@
   <section class="hero-section" id="hero">
     <div class="hero-card">
       <div class="hero-badge-pill">
-        <span>🧠 Cognitive Precision Engine</span> &bull; <span>Version 4.8</span>
+        <span>ðŸ§  Cognitive Precision Engine</span> &bull; <span>Version 4.8</span>
       </div>
       <h2 class="hero-title">Level Up Your Mind with <span class="gradient-text-teal">Interactive Quizzes & Flashcards</span></h2>
       <p class="hero-subtitle">
@@ -71,14 +73,14 @@
 
       <div class="hero-cta-group">
         <button class="btn-primary" id="btn-start-drill">
-          <span>🚀</span> Start Instant Skill Drill
+          <span>ðŸš€</span> Start Instant Skill Drill
         </button>
         <!-- ZONE 5: Direct Link / SmartLink CTAs -->
         <a href="#" class="btn-secondary smartlink-cta btn-view-certificate" data-ad-action="View Quiz Certificate">
-          <span>🎓</span> View Quiz Certificate
+          <span>ðŸŽ“</span> View Quiz Certificate
         </a>
         <a href="#" class="btn-amber-outline smartlink-cta btn-download-notes" data-ad-action="Download Study Notes">
-          <span>📚</span> Download Study Notes (PDF)
+          <span>ðŸ“š</span> Download Study Notes (PDF)
         </a>
       </div>
 
@@ -113,16 +115,16 @@
       <!-- Category Strip -->
       <div class="category-strip" role="tablist">
         <button class="cat-tab-btn active" data-category="all">
-          <span>🌐</span> All Categories
+          <span>ðŸŒ</span> All Categories
         </button>
         <button class="cat-tab-btn" data-category="science">
-          <span>🔬</span> Science & Nature
+          <span>ðŸ”¬</span> Science & Nature
         </button>
         <button class="cat-tab-btn" data-category="coding">
-          <span>💻</span> Coding & Web Tech
+          <span>ðŸ’»</span> Coding & Web Tech
         </button>
         <button class="cat-tab-btn" data-category="general">
-          <span>🌍</span> General Knowledge
+          <span>ðŸŒ</span> General Knowledge
         </button>
       </div>
 
@@ -135,12 +137,12 @@
         <div class="quiz-play-view" id="quiz-play-view">
           <div class="quiz-header-status">
             <div class="quiz-badge-wrap">
-              <span class="quiz-category-pill" id="current-cat-badge">🔬 Science & Nature</span>
+              <span class="quiz-category-pill" id="current-cat-badge">ðŸ”¬ Science & Nature</span>
               <span class="difficulty-pill intermediate" id="current-diff-badge">Intermediate</span>
             </div>
             <div class="quiz-telemetry">
               <div class="quiz-timer-box" id="quiz-timer">
-                <span>⏱</span> <span id="timer-seconds">20</span>s
+                <span>â±</span> <span id="timer-seconds">20</span>s
               </div>
               <div class="quiz-score-pill">
                 <span>Score:</span> <strong id="live-score">0 XP</strong>
@@ -157,7 +159,7 @@
           <div class="quiz-question-box">
             <div class="question-meta-row">
               <span id="question-progress-text">Question 1 of 6</span>
-              <span id="streak-combo-badge">Streak: 🔥 0x</span>
+              <span id="streak-combo-badge">Streak: ðŸ”¥ 0x</span>
             </div>
             <h3 class="quiz-question-text" id="question-text">
               Loading interactive question prompt...
@@ -172,7 +174,7 @@
           <!-- Educational Explanation Box -->
           <div class="quiz-explanation-box" id="explanation-box">
             <div class="quiz-explanation-title">
-              <span>💡</span> Scholar Insight & Explanation:
+              <span>ðŸ’¡</span> Scholar Insight & Explanation:
             </div>
             <p class="quiz-explanation-text" id="explanation-text"></p>
           </div>
@@ -180,7 +182,7 @@
           <!-- Action Controls -->
           <div class="quiz-footer-actions">
             <button class="btn-hint" id="btn-show-hint">
-              <span>🔎</span> Reveal Hint (-5 XP)
+              <span>ðŸ”Ž</span> Reveal Hint (-5 XP)
             </button>
             <button class="btn-next-question" id="btn-next-question" disabled>
               Next Question <span>&rarr;</span>
@@ -190,7 +192,7 @@
 
         <!-- Quiz Result & Dynamic Certificate View -->
         <div class="quiz-result-view" id="quiz-result-view">
-          <div class="result-trophy-icon">🏆</div>
+          <div class="result-trophy-icon">ðŸ†</div>
           <h3 class="result-title">Skill Assessment Complete!</h3>
           <p class="result-subtitle" id="result-verdict">
             Outstanding mastery. You have qualified for the BrainForge Scholar Honors.
@@ -235,13 +237,13 @@
           <!-- Zone 5 Direct Link Result CTAs -->
           <div class="result-cta-group">
             <a href="#" class="btn-primary smartlink-cta btn-view-certificate" data-ad-action="View High-Res Certificate">
-              <span>🎓</span> View Quiz Certificate (Official PDF)
+              <span>ðŸŽ“</span> View Quiz Certificate (Official PDF)
             </a>
             <a href="#" class="btn-secondary smartlink-cta btn-download-notes" data-ad-action="Download Question Breakdown">
-              <span>📚</span> Download Study Notes & Explanations
+              <span>ðŸ“š</span> Download Study Notes & Explanations
             </a>
             <button class="btn-amber-outline" id="btn-restart-quiz">
-              <span>🔄</span> Retake Challenge
+              <span>ðŸ”„</span> Retake Challenge
             </button>
           </div>
         </div>
@@ -254,7 +256,7 @@
       <section class="flashcards-section" id="flashcards">
         <div class="section-head-row">
           <h3 class="section-title">
-            <span>🎴</span> Smart 3D Flashcards
+            <span>ðŸŽ´</span> Smart 3D Flashcards
           </h3>
           <div class="stat-pill xp">
             <span id="flashcard-deck-status">Card 1 of 8</span>
@@ -267,11 +269,11 @@
             <div class="flashcard-face flashcard-front">
               <div class="card-top-label">
                 <span class="card-topic-tag" id="card-topic">Quantum Physics</span>
-                <span class="card-click-hint">Click card to reveal answer ⤾</span>
+                <span class="card-click-hint">Click card to reveal answer â¤¾</span>
               </div>
               <div class="card-center-prompt">
                 <h4 class="card-question-text" id="card-prompt">
-                  What is Quantum Superposition and how does Schrödinger's Wave Function describe it?
+                  What is Quantum Superposition and how does SchrÃ¶dinger's Wave Function describe it?
                 </h4>
               </div>
               <div class="card-bottom-bar">
@@ -284,15 +286,15 @@
             <div class="flashcard-face flashcard-back">
               <div class="card-top-label">
                 <span class="card-topic-tag" id="card-back-topic">Conceptual Breakdown</span>
-                <span class="card-click-hint">Click to flip back ⤿</span>
+                <span class="card-click-hint">Click to flip back â¤¿</span>
               </div>
               <div class="card-center-prompt">
                 <p class="card-back-explanation" id="card-explanation">
                   A physical system exists partly in all theoretically possible states simultaneously until measured. 
-                  The linear combination of state vectors is represented mathematically by |Ψ⟩ = α|0⟩ + β|1⟩.
+                  The linear combination of state vectors is represented mathematically by |Î¨âŸ© = Î±|0âŸ© + Î²|1âŸ©.
                 </p>
                 <div class="card-back-fact" id="card-fact">
-                  💡 Key takeaway: Measurement causes wavefunction collapse into an eigenstate.
+                  ðŸ’¡ Key takeaway: Measurement causes wavefunction collapse into an eigenstate.
                 </div>
               </div>
               <div class="card-bottom-bar">
@@ -308,13 +310,13 @@
             <span>&larr;</span> Previous
           </button>
           <button class="btn-flashcard-ctrl" id="btn-card-flip">
-            <span>🔄</span> Flip Card
+            <span>ðŸ”„</span> Flip Card
           </button>
           <button class="btn-flashcard-ctrl" id="btn-card-next">
             Next <span>&rarr;</span>
           </button>
           <button class="btn-flashcard-ctrl" id="btn-card-shuffle">
-            <span>🔀</span> Shuffle Deck
+            <span>ðŸ”€</span> Shuffle Deck
           </button>
         </div>
       </section>
@@ -325,7 +327,7 @@
       <section class="video-masterclass-section" id="masterclass">
         <div class="section-head-row">
           <h3 class="section-title">
-            <span>🎥</span> Masterclass: Neural Networks & Quantum Computing
+            <span>ðŸŽ¥</span> Masterclass: Neural Networks & Quantum Computing
           </h3>
           <span class="stat-pill streak">HilltopAds VAST Tag Enabled</span>
         </div>
@@ -350,7 +352,7 @@
             </div>
 
             <div class="vast-ad-showcase">
-              <div class="vast-brand-icon">🎓</div>
+              <div class="vast-brand-icon">ðŸŽ“</div>
               <h4 class="vast-title">Next-Gen Full-Stack AI Developer Bootcamp</h4>
               <p class="vast-desc">
                 Accelerate your career with real-world LLM orchestration, vector databases, and high-frequency algorithms.
@@ -374,10 +376,10 @@
 
         <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
           <button class="btn-primary" id="vast-play-trigger">
-            <span>▶</span> Play Video (Triggers VAST Pre-Roll)
+            <span>â–¶</span> Play Video (Triggers VAST Pre-Roll)
           </button>
           <a href="#" class="btn-secondary smartlink-cta btn-download-notes" data-ad-action="Download Masterclass Slides">
-            <span>📥</span> Download Masterclass Slides (PDF)
+            <span>ðŸ“¥</span> Download Masterclass Slides (PDF)
           </a>
         </div>
       </section>
@@ -397,14 +399,14 @@
       <!-- Real-Time Study Leaderboard -->
       <div class="sidebar-widget">
         <h4 class="widget-title">
-          <span>🏆 Daily Scholar Leaderboard</span>
+          <span>ðŸ† Daily Scholar Leaderboard</span>
           <span style="font-size: 0.72rem; color: var(--teal-light); font-weight: 700;">LIVE</span>
         </h4>
         
         <div class="leaderboard-list">
           <div class="leaderboard-item rank-1">
             <span class="rank-badge">1</span>
-            <span class="user-avatar">🧙‍♂️</span>
+            <span class="user-avatar">ðŸ§™â€â™‚ï¸</span>
             <div class="user-info">
               <span class="user-name">Elena Rostova</span>
               <span class="user-title-sub">Quantum Specialist &bull; Lv 18</span>
@@ -417,7 +419,7 @@
 
           <div class="leaderboard-item rank-2">
             <span class="rank-badge">2</span>
-            <span class="user-avatar">👩‍💻</span>
+            <span class="user-avatar">ðŸ‘©â€ðŸ’»</span>
             <div class="user-info">
               <span class="user-name">Marcus Vance</span>
               <span class="user-title-sub">Algorithm Architect &bull; Lv 16</span>
@@ -430,7 +432,7 @@
 
           <div class="leaderboard-item rank-3">
             <span class="rank-badge">3</span>
-            <span class="user-avatar">👨‍🔬</span>
+            <span class="user-avatar">ðŸ‘¨â€ðŸ”¬</span>
             <div class="user-info">
               <span class="user-name">Liam Chen</span>
               <span class="user-title-sub">Astrobiologist &bull; Lv 15</span>
@@ -443,7 +445,7 @@
 
           <div class="leaderboard-item">
             <span class="rank-badge">4</span>
-            <span class="user-avatar">⚡</span>
+            <span class="user-avatar">âš¡</span>
             <div class="user-info">
               <span class="user-name">Sophia Taylor</span>
               <span class="user-title-sub">History Scholar &bull; Lv 12</span>
@@ -456,7 +458,7 @@
 
           <div class="leaderboard-item">
             <span class="rank-badge">5</span>
-            <span class="user-avatar">🚀</span>
+            <span class="user-avatar">ðŸš€</span>
             <div class="user-info">
               <span class="user-name">Alex Mercer (You)</span>
               <span class="user-title-sub">BrainForge Apprentice &bull; Lv 7</span>
@@ -472,7 +474,7 @@
       <!-- Study Material Direct Link Downloads (Zone 5 SmartLinks) -->
       <div class="sidebar-widget">
         <h4 class="widget-title">
-          <span>📚 Curated Study Blueprints</span>
+          <span>ðŸ“š Curated Study Blueprints</span>
         </h4>
 
         <div class="download-card-list">
@@ -483,7 +485,7 @@
             <h5 class="download-card-title">Top 50 JavaScript & Python Code Challenges</h5>
             <p style="font-size: 0.78rem; color: var(--text-muted);">Comprehensive algorithms, Big-O analysis, and interview patterns.</p>
             <a href="#" class="btn-sidebar-dl smartlink-cta" data-ad-action="Download JS & Python Blueprint">
-              <span>⚡</span> Download Blueprint (Free)
+              <span>âš¡</span> Download Blueprint (Free)
             </a>
           </div>
 
@@ -494,7 +496,7 @@
             <h5 class="download-card-title">Particle Physics & Cosmology Handbook</h5>
             <p style="font-size: 0.78rem; color: var(--text-muted);">Standard model diagrams, relativity formulas, and space telescopes.</p>
             <a href="#" class="btn-sidebar-dl smartlink-cta" data-ad-action="Download Physics Handbook">
-              <span>🔬</span> Download Handbook
+              <span>ðŸ”¬</span> Download Handbook
             </a>
           </div>
 
@@ -505,7 +507,7 @@
             <h5 class="download-card-title">World History & Civilizations Timeline</h5>
             <p style="font-size: 0.78rem; color: var(--text-muted);">Key revolutions, architectural monuments, and epochal treaties.</p>
             <a href="#" class="btn-sidebar-dl smartlink-cta" data-ad-action="Download History Timeline">
-              <span>🌍</span> Download Timeline
+              <span>ðŸŒ</span> Download Timeline
             </a>
           </div>
         </div>
@@ -538,7 +540,7 @@
     <div class="config-modal-panel">
       <div class="modal-header-row">
         <h3 class="modal-title">
-          <span>⚙️</span> HilltopAds Monetization Zones Configuration
+          <span>âš™ï¸</span> HilltopAds Monetization Zones Configuration
         </h3>
         <button class="modal-close-icon" onclick="closeAdsConfigModal()">&times;</button>
       </div>
@@ -622,7 +624,7 @@
     <div class="footer-inner">
       <div class="footer-brand">
         <div class="brand-logo" style="margin-bottom: 0.5rem;">
-          <div class="brand-icon">⚡</div>
+          <div class="brand-icon">âš¡</div>
           <div class="brand-text">
             <h1>BrainForge</h1>
             <span class="brand-tagline">Cognitive Testing Platform</span>
@@ -760,7 +762,7 @@
         ],
         correctIndex: 0,
         hint: "They also built the great Ziggurats of Ur around 3000 BCE.",
-        explanation: "Sumerians invented cuneiform script around 3400–3200 BCE, using wedge-shaped styluses pressed into soft clay tablets."
+        explanation: "Sumerians invented cuneiform script around 3400â€“3200 BCE, using wedge-shaped styluses pressed into soft clay tablets."
       },
       {
         id: 6,
@@ -820,32 +822,32 @@
       {
         topic: "Quantum Physics",
         prompt: "What is Quantum Superposition and how does the Wave Function represent it?",
-        explanation: "A physical system exists in all theoretically possible states simultaneously until an observation or measurement is performed. Mathematically expressed as |Ψ⟩ = α|0⟩ + β|1⟩.",
-        fact: "💡 Key takeaway: Observing the system forces wavefunction collapse into a single definitive eigenstate."
+        explanation: "A physical system exists in all theoretically possible states simultaneously until an observation or measurement is performed. Mathematically expressed as |Î¨âŸ© = Î±|0âŸ© + Î²|1âŸ©.",
+        fact: "ðŸ’¡ Key takeaway: Observing the system forces wavefunction collapse into a single definitive eigenstate."
       },
       {
         topic: "Full-Stack Coding",
         prompt: "What is the JavaScript Event Loop and how does the Microtask Queue differ from Macrotask Queue?",
         explanation: "The Event Loop continuously monitors Call Stack execution. Promises (.then, async/await) and queueMicrotask populate the microtask queue, which is completely emptied before the next macrotask (setTimeout, setInterval) runs.",
-        fact: "⚡ Microtasks always execute with higher priority than regular timers."
+        fact: "âš¡ Microtasks always execute with higher priority than regular timers."
       },
       {
         topic: "Computer Science",
         prompt: "What distinguishes BFS (Breadth-First Search) from DFS (Depth-First Search) in graph traversal?",
         explanation: "BFS explores vertex neighbors level by level using a FIFO Queue and guarantees the shortest path on unweighted graphs. DFS explores deep along each branch using a LIFO Stack or recursion.",
-        fact: "🧭 Space complexity: BFS uses O(V) space for queue while DFS uses O(H) call stack height."
+        fact: "ðŸ§­ Space complexity: BFS uses O(V) space for queue while DFS uses O(H) call stack height."
       },
       {
         topic: "Genetics & Biology",
         prompt: "What is CRISPR-Cas9 and what biological role does the guide RNA (gRNA) serve?",
         explanation: "CRISPR-Cas9 is a molecular gene editing tool derived from bacterial immune systems. The guide RNA (gRNA) contains a 20-base sequence that guides the Cas9 endonuclease to cut the specific matching DNA target.",
-        fact: "🧬 Key enzyme: Cas9 creates double-stranded breaks that activate cellular repair pathways."
+        fact: "ðŸ§¬ Key enzyme: Cas9 creates double-stranded breaks that activate cellular repair pathways."
       },
       {
         topic: "World History",
         prompt: "What was the significance of the 1648 Peace of Westphalia in international relations?",
         explanation: "It ended the Thirty Years' War in Europe and established the doctrine of Westphalian sovereignty: the principle that sovereign states have exclusive authority over their domestic territories and religions.",
-        fact: "🏛 Legacy: Established the conceptual foundation of the modern nation-state framework."
+        fact: "ðŸ› Legacy: Established the conceptual foundation of the modern nation-state framework."
       }
     ];
 
@@ -939,7 +941,7 @@
         this.btnHint.addEventListener("click", () => {
           const q = this.currentQuestions[this.currentIndex];
           if (q && q.hint) {
-            alert(`💡 Hint: ${q.hint}`);
+            alert(`ðŸ’¡ Hint: ${q.hint}`);
             this.scoreXP = Math.max(0, this.scoreXP - 5);
             this.updateTelemetry();
           }
@@ -1107,7 +1109,7 @@
 
       updateTelemetry() {
         this.scoreEl.textContent = `${this.scoreXP} XP`;
-        this.streakBadge.textContent = `Streak: 🔥 ${this.streak}x`;
+        this.streakBadge.textContent = `Streak: ðŸ”¥ ${this.streak}x`;
         this.navXpEl.textContent = `${1420 + this.scoreXP} XP`;
         this.sidebarXpEl.textContent = `${1420 + this.scoreXP} XP`;
       }
@@ -1220,3 +1222,4 @@
   <script src="ads-config.js"></script>
 </body>
 </html>
+
